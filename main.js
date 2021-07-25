@@ -29,7 +29,7 @@ function game() {
     let computerScore = 0;
 
     while ( playerScore < 3 && computerScore < 3 ) {
-        const playerSelection = window.prompt("Choose between Rock, Paper, or Scissor:");
+        const playerSelection = window.prompt("Choose between Rock, Paper or Scissor:");
         const computerSelection = computerPlay();
 
         const roundChecker = playRound( capitalize( playerSelection ), computerSelection );
