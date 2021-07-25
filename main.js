@@ -1,13 +1,13 @@
-function capitalize(someString) {
+function capitalize( someString ) {
     return ( someString[0].toUpperCase() + someString.slice(1).toLowerCase() );
 }
 
 function computerPlay () {
-    let choice = Math.floor(Math.random() * 3) +1;
+    let computerChoice = Math.floor(Math.random() * 3) +1;
 
-    if (choice === 1) {
+    if ( computerChoice === 1 ) {
         return 'Rock';
-    } else if (choice === 2) {
+    } else if ( computerChoice === 2 ) {
         return 'Paper';
     } else {
         return 'Scissor';
@@ -23,6 +23,16 @@ function playRound( playerSelection, computerSelection ) {
                         return `You win! ${playerSelection} beats ${computerSelection} :)`;
     } else {
         return `You lose! ${computerSelection} beats ${playerSelection} :(`;
+    }
+}
+
+function finalMessage( playerScore, computerScore ) {
+    if ( playerScore > computerScore )  {
+        return "You are the BIG WINNER!";
+    } else if ( computerScore > playerScore ) {
+        return "Sorry, you lose!";
+    } else {
+        return "Look, it's a TIE D:";
     }
 }
 
@@ -45,13 +55,7 @@ function game() {
         console.log( `${roundChecker}\nYOU ${playerScore} x ${computerScore} MACHINES\n\n` );
     }
 
-    if ( playerScore > computerScore)  {
-        return "You are the BIG WINNER!";
-    } else if (computerScore > playerScore) {
-        return "Sorry, you lose!";
-    } else {
-        return "Look, it's a TIE D:";
-    }
+    return finalMessage( playerScore, computerScore );
 }
 
 console.log( game() );
