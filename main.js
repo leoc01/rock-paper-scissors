@@ -44,11 +44,11 @@ function game() {
     }
 
     if ( playerScore > computerScore)  {
-        return "You are the BIG WINNER!"
+        return "You are the BIG WINNER!";
     } else if (computerScore > playerScore) {
-        return "Sorry, you lose!"
+        return "Sorry, you lose!";
     } else {
-        return "Look, it's a TIE D:"
+        return "Look, it's a TIE D:";
     }
 }
 
