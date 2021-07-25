@@ -40,7 +40,7 @@ function game() {
             computerScore += 1;
         }
 
-        console.log( `${roundChecker}\nYOU ${playerScore} x ${computerScore} MACHINES\n` );
+        console.log( `${roundChecker}\nYOU ${playerScore} x ${computerScore} MACHINES\n\n` );
     }
 
     if ( playerScore > computerScore)  {
