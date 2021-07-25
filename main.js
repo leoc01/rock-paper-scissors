@@ -17,8 +17,10 @@ function computerPlay () {
 function playRound( playerSelection, computerSelection ) {
     if ( playerSelection === computerSelection ) {
         return "It's a tie :|";
-    } else if ( (playerSelection === 'Rock' && computerSelection === 'Scissor') || (playerSelection === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissor' && computerSelection === 'Paper') ) {
-        return `You win! ${playerSelection} beats ${computerSelection} :)`;
+    } else if ( (playerSelection === 'Rock' && computerSelection === 'Scissor') ||
+                    (playerSelection === 'Paper' && computerSelection === 'Rock') ||
+                    (playerSelection === 'Scissor' && computerSelection === 'Paper') ) {
+                        return `You win! ${playerSelection} beats ${computerSelection} :)`;
     } else {
         return `You lose! ${computerSelection} beats ${playerSelection} :(`;
     }
