@@ -46,6 +46,7 @@ function gameOn(playerScore, computerScore, first) {
 
     //reset button 
     resetGame.addEventListener('click', function () {
+        body.style.backgroundColor = 'black';
         resetGame.innerHTML = 'Restart Game';
         choicesArray.forEach(c => c.style.display = "inline-block");
         playerScore = 0;
@@ -97,8 +98,10 @@ function gameOn(playerScore, computerScore, first) {
         if(playerScore>=5 || computerScore>=5 ){
             if(playerScore>computerScore){
                 resetGame.innerHTML = 'YOU WIN!<br>Click to restart';
+                body.style.backgroundColor = '#116911';
             } else {
                 resetGame.innerHTML = 'YOU LOSE!<br>Click to restart';
+                body.style.backgroundColor = '#691111';
             }
             choicesArray.forEach(c => c.style.display = "none");
         }
@@ -111,6 +114,8 @@ function gameOn(playerScore, computerScore, first) {
 let playerScore = 0;
 let computerScore = 0;
 let defaultImage = 'images/Back.png';
+
+const body = document.querySelector('body');
 
 const playerScoreDisplay = document.getElementById('playerScore');
 const computerScoreDisplay = document.getElementById('computerScore');
