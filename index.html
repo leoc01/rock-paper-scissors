@@ -1,29 +1,38 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Rock, Paper, Scissors</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="battle">
     <div class="player">
-      <img id="playerImage" src="images/back.png"></img>
+      <img id="playerImage" src="images/Back.png"></img>
     </div>
-    <div class="score">
-      <div id="playerScore">0</div>
-      <div>X</div>
-      <div id="computerScore">0</div>
+    <div class="middleOfScreen">
+      <div class="scoreZone">
+        <div id="playerScore">0</div>
+        <div>X</div>
+        <div id="computerScore">0</div>
+      </div>
+      <div class="buttonArea">
+        <button id="startGame">Start Game</button>
+        <button id="resetGame">Reset Game</button>
+      </div>
     </div>
     <div class="computer">
-      <img id="computerImage" src="images/back.png"></img>
+      <img id="computerImage" src="images/Back.png"></img>
     </div>
   </div>
   <div class="selectionArea">
-    <img id="chooseRock" class="toChoose" src="images/rock.png"></img>
-    <img id="choosePaper" class="toChoose" src="images/paper.png"></img>
-    <img id="chooseScissor" class="toChoose" src="images/scissor.png"></img>
+    <img id="Rock" class="toChoose" src="images/Rock.png"></img>
+    <img id="Paper" class="toChoose" src="images/Paper.png"></img>
+    <img id="Scissor" class="toChoose" src="images/Scissor.png"></img>
   </div>
   <script src="main.js"></script>
 </body>
+
 </html>

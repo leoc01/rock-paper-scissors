@@ -2,64 +2,104 @@ function computerPlay() {
     let computerChoice = Math.floor(Math.random() * 3) + 1;
 
     if (computerChoice === 1) {
+        computerImage.setAttribute('src', `images/Rock.png`);
         return 'Rock';
     } else if (computerChoice === 2) {
+        computerImage.setAttribute('src', `images/Paper.png`);
         return 'Paper';
     } else {
+        computerImage.setAttribute('src', `images/Scissor.png`);
         return 'Scissor';
     }
 }
 
 function playRound(playerSelection, computerSelection) {
+
     if (playerSelection === computerSelection) {
-        return "It's a tie :|";
+        return 'Tie';
     } else if ((playerSelection === 'Rock' && computerSelection === 'Scissor') ||
         (playerSelection === 'Paper' && computerSelection === 'Rock') ||
         (playerSelection === 'Scissor' && computerSelection === 'Paper')) {
-        return `You win! ${playerSelection} beats ${computerSelection} :)`;
+        return 'Win';
     } else {
-        return `You lose! ${computerSelection} beats ${playerSelection} :(`;
+        return 'Lose';
     }
 }
 
-function finalMessage(playerScore, computerScore) {
-    if (playerScore > computerScore) {
-        return "You are the BIG WINNER!";
-    } else if (computerScore > playerScore) {
-        return "Sorry, you lose!";
-    } else {
-        return "Look, it's a TIE D:";
+function gameOn(playerScore, computerScore, first) {
+    if(first) {
+        changeButton();
     }
-}
 
-function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+    let givePoint = '';
 
-    while (playerScore < 5 && computerScore < 5) {
-        const playerSelection = window.prompt("Choose between Rock, Paper or Scissor:");
-        const computerSelection = computerPlay();
+    resetGame.addEventListener('click', function () {
+        playerScore = 0;
+        computerScore = 0;
+        playerScoreDisplay.innerHTML = 0;
+        computerScoreDisplay.innerHTML = 0;
+        computerScoreDisplay.innerHTML = 0;
+        defaultImage = 'images/Back.png';
+        computerImage.setAttribute('src', defaultImage);
+        playerImage.setAttribute('src', defaultImage);
+        return;
+    });
 
-        const roundChecker = playRound(capitalize(playerSelection), computerSelection);
+    let choices = document.querySelectorAll('.toChoose');
+    let choicesArray = Array.prototype.slice.call(choices);
 
-        if (roundChecker.search("win") > 0) {
+
+    choicesArray.forEach(c => c.addEventListener("mouseover", function (e) {
+        playerImage.setAttribute('src', `${c.getAttribute('src')}`);
+        console.log('hover');
+    })
+    );
+
+    choicesArray.forEach(c => c.addEventListener("mouseout", function (e) {
+        playerImage.setAttribute('src', defaultImage);
+        console.log('hover');
+    })
+    );
+
+    choicesArray.forEach(c => c.addEventListener("click", function (e) {
+        let playerSelection = c.getAttribute('id');
+        defaultImage = `images/${playerSelection}.png`;
+        givePoint = playRound( playerSelection, computerPlay() );
+        if (givePoint === 'Win') {
             playerScore += 1;
-        } else if (roundChecker.search("lose") > 0) {
+            playerScoreDisplay.innerHTML = playerScore;
+        } else if (givePoint ==='Lose') {
             computerScore += 1;
+            computerScoreDisplay.innerHTML = computerScore;
         }
+    })
+    );
 
-        console.log(`${roundChecker}\nYOU ${playerScore} x ${computerScore} MACHINES\n\n`);
-    }
-
-    return finalMessage(playerScore, computerScore);
+    return;
 }
 
-let choices = document.querySelectorAll('.toChoose');
-let choicesArray = Array.prototype.slice.call(choices);
+function changeButton() {
+    if (startGame.style.display !== "none") {
+        startGame.style.display = "none";
+        resetGame.style.display = "inline-block";
+    }
+}
 
-choicesArray.forEach(c => c.addEventListener("mouseover", function (element) {
-    const choosenID = c.getAttribute('id');
-    const playerImg = document.getElementById('playerImage');
-    playerImg.setAttribute('src', `${c.getAttribute('src')}`);
-})
-);
+let playerScore = 0;
+let computerScore = 0;
+let defaultImage = 'images/Back.png';
+
+const playerScoreDisplay = document.getElementById('playerScore');
+const computerScoreDisplay = document.getElementById('computerScore');
+
+const computerImage = document.getElementById('computerImage');
+const playerImage = document.getElementById('playerImage');
+
+const startGame = document.getElementById('startGame');
+const resetGame = document.getElementById('resetGame');
+
+startGame.addEventListener('click', function () {
+    playerScore = 0;
+    computerScore = 0;
+    gameOn(playerScore, computerScore, true);
+});

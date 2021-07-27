@@ -19,13 +19,22 @@ body {
     background-color: aqua;
 }
 
-.score {
+.middleOfScreen {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     height: 100%;
     width: 30%;
     background-color: red;
+}
+
+.scoreZone {
+    display: flex;
+}
+
+#resetGame {
+    display: none;
 }
 
 .computer {
