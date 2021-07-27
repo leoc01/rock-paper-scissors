@@ -2,9 +2,28 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Rock, Paper, Scissor</title>
+  <title>Rock, Paper, Scissors</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="battle">
+    <div class="player">
+      <img id="playerImage" src="images/back.png"></img>
+    </div>
+    <div class="score">
+      <div id="playerScore">0</div>
+      <div>X</div>
+      <div id="computerScore">0</div>
+    </div>
+    <div class="computer">
+      <img id="computerImage" src="images/back.png"></img>
+    </div>
+  </div>
+  <div class="selectionArea">
+    <img id="chooseRock" class="toChoose" src="images/rock.png"></img>
+    <img id="choosePaper" class="toChoose" src="images/paper.png"></img>
+    <img id="chooseScissor" class="toChoose" src="images/scissor.png"></img>
+  </div>
   <script src="main.js"></script>
 </body>
 </html>
