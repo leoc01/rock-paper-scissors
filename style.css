@@ -1,6 +1,9 @@
 body {
     height: 100vh;
     margin: 0;
+    font-family: 'Syne Mono', monospace;
+    background-color: black;
+    color: white;
 }
 
 .battle {
@@ -16,7 +19,6 @@ body {
     align-items: center;
     height: 100%;
     width: 35%;
-    background-color: aqua;
 }
 
 .middleOfScreen {
@@ -26,11 +28,36 @@ body {
     align-items: center;
     height: 100%;
     width: 30%;
-    background-color: red;
 }
 
 .scoreZone {
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.scoreNumber {
+    margin: 0 20px 0 20px;
+    font-size: 150px;
+}
+
+#x {
+    font-size: 40px;
+}
+
+.gameButton {
+    background-color: white;
+    font-size: 20px;
+    height: 100px;
+    width: 200px;
+    border-color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.gameButton:hover {
+    background-color: #cccccc;
 }
 
 #resetGame {
@@ -43,7 +70,6 @@ body {
     align-items: center;
     height: 100%;
     width: 35%;
-    background-color: blue;
 }
 
 .selectionArea {
@@ -51,16 +77,35 @@ body {
     justify-content: center;
     align-items: center;
     height: 30vh;
-    background-color: sandybrown;
 }
 
 .toChoose {
+    display: none;
     width: 150px;
     height: 150px;
     margin: 0 20px 0 20px;
     border-radius: 50%;
+    cursor: pointer;
 }
 
 .toChoose:hover {
-    box-shadow: 0px 0px 10px black;
+    box-shadow: 0px 0px 20px 10px rgb(255, 255, 255);
 }
+
+.waiting {
+    border-radius: 50%;
+    box-shadow: 0px 0px 20px 5px #999999;
+}
+
+.win {
+    box-shadow: 0px 0px 20px 10px #00ff00;
+}
+
+.lose {
+    box-shadow: 0px 0px 20px 10px #ff0000;
+}
+
+.tie {
+    box-shadow: 0px 0px 20px 10px #ffff00;
+}
+

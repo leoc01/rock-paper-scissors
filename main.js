@@ -1,3 +1,4 @@
+//random computer play
 function computerPlay() {
     let computerChoice = Math.floor(Math.random() * 3) + 1;
 
@@ -13,6 +14,7 @@ function computerPlay() {
     }
 }
 
+//return results for each round
 function playRound(playerSelection, computerSelection) {
 
     if (playerSelection === computerSelection) {
@@ -26,6 +28,15 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
+//change between start button and reset button
+function changeButton() {
+    if (startGame.style.display !== "none") {
+        startGame.style.display = "none";
+        resetGame.style.display = "inline-block";
+    }
+}
+
+//start the game
 function gameOn(playerScore, computerScore, first) {
     if(first) {
         changeButton();
@@ -33,7 +44,10 @@ function gameOn(playerScore, computerScore, first) {
 
     let givePoint = '';
 
+    //reset button 
     resetGame.addEventListener('click', function () {
+        resetGame.innerHTML = 'Restart Game';
+        choicesArray.forEach(c => c.style.display = "inline-block");
         playerScore = 0;
         computerScore = 0;
         playerScoreDisplay.innerHTML = 0;
@@ -42,25 +56,24 @@ function gameOn(playerScore, computerScore, first) {
         defaultImage = 'images/Back.png';
         computerImage.setAttribute('src', defaultImage);
         playerImage.setAttribute('src', defaultImage);
+        computerImage.setAttribute('class', 'waiting');
+        playerImage.setAttribute('class', 'waiting');
         return;
     });
 
-    let choices = document.querySelectorAll('.toChoose');
-    let choicesArray = Array.prototype.slice.call(choices);
-
-
+    //put the image on players side on mouse hover
     choicesArray.forEach(c => c.addEventListener("mouseover", function (e) {
         playerImage.setAttribute('src', `${c.getAttribute('src')}`);
-        console.log('hover');
     })
     );
 
+    //back the image to default on mouse out
     choicesArray.forEach(c => c.addEventListener("mouseout", function (e) {
         playerImage.setAttribute('src', defaultImage);
-        console.log('hover');
     })
     );
 
+    //each click, run the game to give points and change styles
     choicesArray.forEach(c => c.addEventListener("click", function (e) {
         let playerSelection = c.getAttribute('id');
         defaultImage = `images/${playerSelection}.png`;
@@ -68,21 +81,31 @@ function gameOn(playerScore, computerScore, first) {
         if (givePoint === 'Win') {
             playerScore += 1;
             playerScoreDisplay.innerHTML = playerScore;
+            playerImage.setAttribute('class', 'waiting win');
+            computerImage.setAttribute('class', 'waiting lose');
         } else if (givePoint ==='Lose') {
             computerScore += 1;
             computerScoreDisplay.innerHTML = computerScore;
+            computerImage.setAttribute('class', 'waiting win');
+            playerImage.setAttribute('class', 'waiting lose');
+        } else {
+            computerImage.setAttribute('class', 'waiting tie');
+            playerImage.setAttribute('class', 'waiting tie');
+        }
+
+        //check for a winner
+        if(playerScore>=5 || computerScore>=5 ){
+            if(playerScore>computerScore){
+                resetGame.innerHTML = 'YOU WIN!<br>Click to restart';
+            } else {
+                resetGame.innerHTML = 'YOU LOSE!<br>Click to restart';
+            }
+            choicesArray.forEach(c => c.style.display = "none");
         }
     })
     );
 
     return;
-}
-
-function changeButton() {
-    if (startGame.style.display !== "none") {
-        startGame.style.display = "none";
-        resetGame.style.display = "inline-block";
-    }
 }
 
 let playerScore = 0;
@@ -98,8 +121,13 @@ const playerImage = document.getElementById('playerImage');
 const startGame = document.getElementById('startGame');
 const resetGame = document.getElementById('resetGame');
 
+let choices = document.querySelectorAll('.toChoose');
+let choicesArray = Array.prototype.slice.call(choices);
+
+//start button function
 startGame.addEventListener('click', function () {
     playerScore = 0;
     computerScore = 0;
+    choicesArray.forEach(c => c.style.display = "inline-block");
     gameOn(playerScore, computerScore, true);
 });
