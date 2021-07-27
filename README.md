@@ -1,6 +1,8 @@
 Rock, Paper, Scissor.
 
-This is, for now, the console version of Rock, Paper, scissor, made for The Odin Project.
+<del>This is, for now, the console version of Rock, Paper, scissor, made for The Odin Project.</del>
+
+Finished UI version of the game (:
 
 To play this, just clone the project, open the index.html, open de console and the game will run there.
 
